@@ -1,0 +1,78 @@
+#create a deployment
+kubectl create -f <deployment-defn> 
+
+kubectl rollout status <deployment-name>
+kubectl rollout history <deployment-name>
+
+#to update
+kubectl apply -f
+kubectl set-image <deployment-name> <container>=<image>
+
+#rollback
+kubectl rollout undo <deployment>
+
+#Dockerfile and pod-definition
+## 1. dockerfile with no default command
+Entrypoint takes arguments that are supplied on command line during docker/kubectl run or from kubernetes manifests 
+Dockerfile: ENTRYPOINT ["python", "app.py"]
+## 2. Dockerfile with default command that can be overridden from pod defn
+ENTRYPOINT ["python", "app.py"]
+CMD ["--color", "red"]
+
+## 3. Dockerfile
+ENTRYPOINT ["python", "app.py"]
+CMD ["--color", "red"]
+## 3. pod-definition
+  - name: simple-webapp
+    image: kodekloud/webapp-color
+    args: ["--color", "green"] --> overrides the command and passed as a command
+#Configmaps
+k get configmap
+k create configmap <name> --from-literal=KEY=VALUE
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dapi-test-pod
+spec:
+  containers:
+    - name: test-container
+      image: k8s.gcr.io/busybox
+      command: [ "/bin/sh", "-c", "env" ]
+      env:
+        # Define the environment variable
+        - name: SPECIAL_LEVEL_KEY
+          valueFrom:
+            configMapKeyRef:
+              # The ConfigMap containing the value you want to assign to SPECIAL_LEVEL_KEY
+              name: special-config
+              # Specify the key associated with the value
+              key: special.how
+
+#Secrets use similar commands
+creating multiple secrets
+kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123
+
+#Volume mounts and host paths
+  containers:
+  - name: app
+    image: kodekloud/event-simulator
+    volumeMounts:
+    - mountPath: /log
+      name: log-volume
+
+  - name: sidecar
+    image: kodekloud/filebeat-configured
+    volumeMounts:
+    - mountPath: /var/log/event-simulator/
+      name: log-volume
+
+  volumes:
+  - name: log-volume
+    hostPath:
+      # directory location on host
+      path: /var/log/webapp
+      # this field is optional
+      type: DirectoryOrCreate
+Secrets have type
+type: kubernetes.io/service-account-token
