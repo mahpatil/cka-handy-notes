@@ -1,0 +1,30 @@
+== Security
+=== Checking what certs are used by apiserver/etcd
+cat /etc/kubernetes/manifests/<staticpod>.yaml
+for kubelet check service status, and check where the config file is stored
+=== Check certificate
+openssl x509 -in  /etc/kubernetes/pki/etcd/server.crt -text
+=== **Pro Tip**
+if you cant seee logs using kubectl logs, use docker logs
+if there are no docker logs chedk journalctl / journalctl | grep etcd for etcderrors
+
+=== **Pro Tip**
+to check namespace and cluster level resources
+kubectl api-resources namespaced=true/false
+
+=== **Impt**
+Cluster roles are global and not part of a particular namespaces (but can be)
+
+=== View config
+kubectl config view --users/clusters
+kubectl config view --kubeconfig <filename>
+
+=== view commands a user acn exexute
+kubectl --as <username>
+
+=== docker registry secret
+kubectl create secret docker-registry private-reg-cred --docker-username=dock_user --docker-password=dock_password --docker-server=myprivateregistry.com:5000 --docker-email=<email>
+
+=== check if a command can be executed (based on security-context)
+kubectl exec -it ubuntu-sleeper -- date -s '19 APR 2012 11:14:00'
+
