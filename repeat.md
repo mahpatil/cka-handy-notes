@@ -1,5 +1,8 @@
 Backup and restore (etcd)
 Neworking - explore environment (exam)
+Networking weave 
+- CNI in kubernetes
+- Weave training
 Certificate
 Test cluster roles
 Image security
