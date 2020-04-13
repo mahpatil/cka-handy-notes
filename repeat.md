@@ -3,6 +3,7 @@ Neworking - explore environment (exam)
 Networking weave 
 - CNI in kubernetes
 - Weave training
+Troubleshooting tests
 Certificate
 Test cluster roles
 Image security
