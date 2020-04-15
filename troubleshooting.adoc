@@ -1,0 +1,11 @@
+== 13 Troublehshooting
+=== key commands for services
+kubectl describe service <servicename> and check ports and name and selectors
+kubectl get endpoints -- to confirm the service has an endpoint
+
+=== nodes troublehsooting
+kubectl describe node <nodenam> 
+for workers
+check kubelet is running
+if running check journalctl -u kubelet
+kubectl cluster-info --shows api server and kubedns
