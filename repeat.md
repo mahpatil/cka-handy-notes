@@ -1,4 +1,5 @@
 Backup and restore (etcd)
+generate new certificate for user and check roles and rolebinding
 Neworking - explore environment (exam)
 Networking weave 
 - CNI in kubernetes
