@@ -11,14 +11,14 @@ resource requests
 Traffic
 - heavy
 - burst
-Type of storage you need
+- Type of storage you need
 
-recommendations:
-1. tool for installation
-2. storage
-3. network solution (weave, fannel, calico)
-- support for policies
-- scale
+=== Recommendations:
+. tool for installation
+. storage
+. network solution (weave, fannel, calico)
+.. support for policies
+.. scale
 https://www.objectif-libre.com/en/blog/2018/07/05/k8s-network-solutions-comparison/
 
 

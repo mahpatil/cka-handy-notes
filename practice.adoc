@@ -1,4 +1,0 @@
-creating kubecontext
-creating pods using kubectl
-creating deployments using kubectl
-create pvs and pvcs

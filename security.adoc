@@ -1,16 +1,31 @@
 == Security
 === Checking what certs are used by apiserver/etcd
-cat /etc/kubernetes/manifests/<staticpod>.yaml
-for kubelet check service status, and check where the config file is stored
+. `cat /etc/kubernetes/manifests/<staticpod>.yaml`
+. for kubelet check service status, and check where the config file is stored
+. kubelet certificates should be in `/var/lib/kubelet/pki`
+. kubernetes cerst shoudl be in `/etc/kubernetes/pki/`
+
+=== generate key
+openssl genrsa -out <user>.key 2048
+
 === Check certificate
 openssl x509 -in  /etc/kubernetes/pki/etcd/server.crt -text
-=== **Pro Tip**
-if you cant seee logs using kubectl logs, use docker logs
-if there are no docker logs chedk journalctl / journalctl | grep etcd for etcderrors
+
+=== generate csr
+[source,shell]
+----
+openssl req -new -key john.key -out john.csr -subj="/CN=john/O=system:masters" -CN=user O=node<optional>
+sign csr: openssl x509 -req -in /etc/kubernetes/pki/apiserver-etcd-client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out apiserver-etcd-client.crt
+----
+https://www.sslshopper.com/article-most-common-openssl-commands.html
 
 === **Pro Tip**
-to check namespace and cluster level resources
-kubectl api-resources namespaced=true/false
+. if you cant seee logs using kubectl logs, use docker logs
+. if there are no docker logs check `journalctl -u <processname> | grep etcd for etcderrors`
+
+=== **Pro Tip**
+. to check namespace and cluster level resources
+. `kubectl api-resources namespaced=true/false`
 
 === **Impt**
 Cluster roles are global and not part of a particular namespaces (but can be)

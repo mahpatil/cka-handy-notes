@@ -1,21 +1,23 @@
-= Networking
-== Key commands
+== Networking
 === list intefaces
+[source,shell]
+----
 ip address #list of all ip addresses assigned to the host
 ip link #list of all network intefaces (bridge and others)
 ip link add
 ip link show docker0 #show status of an interface
+
 # remember state is shown ext to state - see below the state is down
 3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DEFAULT group default
     link/ether 02:42:db:ff:90:96 brd ff:ff:ff:ff:ff:ff
 
 ip addr
 ip addr add 192.168.1.10/24 dev eth0 #ip for device etch0 
-
+----
 === routing
-ip route
-ip route add 192.168.1.10/24 via 192.168.2.1 #via gateway
-ip route show default #shows default routes
+* ip route
+* ip route add 192.168.1.10/24 via 192.168.2.1 #via gateway
+* ip route show default #shows default routes
 
 cat /proc/sys/net/ipv4/ip_forward #to check if this is enabled
 
@@ -23,35 +25,45 @@ cat /proc/sys/net/ipv4/ip_forward #to check if this is enabled
 to check ip and mac of another node from a master node
 arp
 === ports and services
+[source,shell]
+----
 netstat -plnt # to list services and ports
 netstat -anp | grep -i etcd #to check which clients are connected on which ports
+----
 === add network namespace 
 ip netns add <inteface>
 
 === check network plugin via kubelet
-ps -aux | grep kubelet -- check what is the parameter for network plugin
---cni-bin-dir shows the directory of cni plugin
-ls /opt/cni/bin shoudl show available plugins
-Run the command ls /etc/cni/net.d/ and identify the name of the plugin
-open the /etc/cni/net.d/<pluginfile> and identify the name of the plugin binary
+* `ps -aux | grep kubelet` -- check what is the parameter for network plugin
+* --cni-bin-dir shows the directory of cni plugin
+* `ls /opt/cni/bin` should show available plugins
+* Run the command `ls /etc/cni/net.d/` and identify the name of the plugin
+* open the `/etc/cni/net.d/<pluginfile>` and identify the name of the plugin binary
 
 == Service networking
 === checking proxy mode of kube proxy
-describe kube-proxy pod or process #then try to find --proxy-mode [userspace/iptables/ipvs]
-or logs of the kube proxy for proxy mode
-kubectl logs kube-proxy-55vzv -n kube-system
+. describe kube-proxy pod or process #then try to find --proxy-mode [userspace/iptables/ipvs]
+. or logs of the kube proxy for proxy mode
+. kubectl logs kube-proxy-55vzv -n kube-system
+
 === server cluster ip range in kubeapiserver 
-ps -aux | grep kube-api
---service-cluster-ip-range shows the ip range for all services
+. service ip range
+.. ps -aux | grep kube-api
+.. --service-cluster-ip-range shows the ip range for all services
 this should not conflict with the pod ip range
+. pod ip ranges per node
+.. kubectl describe node <node-name> -- look for podCIDR
+
 === checking iptables entries by services
 you can see iptables in the "net" table
-iptables -L -t net | grep <service name>
+`iptables -L -t net | grep <service name>`
 each entry has a comment with the name of the service
 you can also check this in the kube-proxy logs /var/log/kube-proxy.log
 
 == to check ip range allocated to pods
 check logs of the cni plugin pod
+[source,shell]
+----
  k -n kube-system logs -f weave-net-2pw5t weave
-
+----
 == review ingress rewrite options and deployment of ingress controller
