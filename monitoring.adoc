@@ -1,0 +1,9 @@
+== Monitoring
+== to deploy metrics server
+. clone github repo and **kubectl create -f .** the deployment and other objects
+
+https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server
+
+== commands to check stats
+. kubectl top node
+. kubectl top pod

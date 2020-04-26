@@ -1,0 +1,14 @@
+== Tests
+. Create a new user called john. Grant him access to the cluster. John should have permission to create, list, get, update and delete
+pods in the development namespace . The private key exists in the location: /root/john.key and csr at /root/john.csr
+
+. List of nodes in JSON format and store it in a file at /opt/outputs/nodes-z3444kd9.json
+Use JSON PATH query to retrieve the osImages of all the nodes and store it in a file /opt/outputs/nodes_os_x43kj56.txt
+
+. Persistent volume creation
+Create a Pod called redis-storage with image: redis:alpine with a Volume of type emptyDir that lasts for the life of the Pod. Specs on the
+Take a backup of the etcd cluster and save it to /tmp/etcd-backup.db
+
+. Create an nginx pod called nginx-resolver using image nginx, expose it internally with a service called nginx-resolver-service. Test that
+you are able to look up the service and pod names from within the cluster. Use the image: busybox:1.28 for dns lookup. Record results in
+/root/nginx.svc and /root/nginx.pod

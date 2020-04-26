@@ -1,0 +1,79 @@
+== Tricks
+
+=== add to .vimrc
+[source,shell]
+----
+set tabstop=2
+set expandtab 
+set autoindent
+----
+=== create following aliases
+[source,shell]
+----
+alias sshroot='ssh -l root'
+alias k=kubectl
+alias kapply='kubectl apply -f'
+alias ksys='kubectl -n kube-system'
+alias kno='kubectl get nodes'
+alias kuse='kubectl config use-context'
+alias kns='kubectl config set-context --current --namespace'
+alias kcurr='kubectl config current-context'
+alias krun='kubectl run --generator=run-pod/v1'
+----
+
+=== namespace with most resources
+. k api-resources --namespaced -o name 
+. k api-resources --namespaced -o name | tr "\n" "," --without the new lines
+. RESOURCES=$(k api-resources --namespaced -o name | tr "\n" ",")
+. k get $RESOURCES --all-namespaces -o jsonpath="{range .items[*]}{.metadata.namespace} {.metadata.name}{'\n'}" | sort | grep project-c14 | wc -l
+. kubectl api-versions 
+. kubectl api-resources 
+. kubectl auth can-i update po --as john 
+
+=== status of kubernetes components
+kubectl get componentstatuses --kubeconfig admin.kubeconfig
+
+=== events
+kubectl get events --all-namespaces --sort-by=.metadata.creationTimestamp --by default reverse sourted
+
+=== networking
+. pod cidr: k describe node | less -p PodCIDR
+. kubectl expose pod nginx-resolver nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
+
+=== scheduling 
+  nodeSelector:                           # add
+    node-role.kubernetes.io/master: ""    # add
+Which suffix will static pods have that run on cluster1-worker1:
+-cluster1-worker1
+
+=== easy search for files
+[source,shell]
+----
+find /etc/systemd/system/
+find /etc/kubernetes/manifests/
+k -n project-c14 create job backup-manual-run-1 --from=cronjob/holy-backup
+----
+
+=== calling api server
+curl -k https://kubernetes.default/api/v1/secrets
+
+=== service tokens
+TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
+
+=== running shell with complex command
+k run tmp --image=curlimages/curl:7.65.3 --restart=Never --dry-run -o yaml --command > 6.yaml -- sh -c 'sleep 1d'
+
+=== jsonpath and unix commands
+* Range: jsonpath="{range .items[*]} {.metadata.name}{.spec.containers[*].resources}{'\n'}"
+* Contexts from config: k config view -o jsonpath="{.contexts[*].name}" | tr " " "\n"
+* Multiple ranges: 
+
+[source,shell]
+----
+k get node -o jsonpath="{range .items[*]}{.metadata.name} {.spec.podCIDR}{'\n'}{end}{range .items[*]}{.status.nodeInfo.architecture}{'\n'}{end}"
+----
+
+* Use translate to replace: tr " " "\n"
+* search and replace: sed -e "s/text/newtext/"
+* highlight: less -p text
+* grep or: k describe node | grep  "Name\|CIDR"  or use egrep 'pattern1|pattern2'
