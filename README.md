@@ -11,9 +11,9 @@ CKA is completely hands on and requires you to be good at:
 
 The sections below provide an overview of where you should start. 
 
-**Note that all of the headers below are hyperlinked.**
+**Note that some of the headers below are hyperlinked.**
 
-## [Useful links to start with](useful-links.adoc)
+## Useful links to start with
 
 1. [One of the best CKA trainings](https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/)
 2. [Insights & examples from Kim Wuestkamp](https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d)
@@ -47,7 +47,7 @@ Some key topics and concepts to remember along with commands.
 ## [Tips and tricks](tips-and-tricks.adoc) 
 Some useful tips for the exam, aliases I used to help speed up my work, vi setup, common mistakes and trips
 
-## [Revision](revision.adoc) 
+## [Revision](revision.adoc)
 Revisit these sections again and finish up killer.sh.
 
 Best of luck!!!
