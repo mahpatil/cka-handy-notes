@@ -32,14 +32,14 @@ Some key topics and concepts to remember along with commands.
 
 | #   | Topic | Description |
 | --- | ----- | ----        |
-|  1   | [Application lifecycle](application-lifecycle.adoc) | Scheduling applications with config, storage |
-|  4   | [Scheduling](scheduling.adoc) | Scheduling applications/pods |
-|  4   | [Monitoring](monitoring.adoc) | Viewing logs and metrics |
+|  1   | [Application lifecycle](application-lifecycle.adoc) | Scheduling applications with config, storage. |
+|  2   | [Scheduling](scheduling.adoc) | Scheduling applications/pods. |
+|  3   | [Monitoring](monitoring.adoc) | Viewing logs and metrics. |
 |  4   | [Security](monitoring.adoc) | Managing TLS and authentication, RBAC |
-|  4   | [Networking](networking.adoc) | Configuring network plugins, services |
-|  4   | [Troubleshooting](troubleshooting.adoc) | Troubleshooting application issues. |
-|  3   | [Cluster maintenance](cluster-maintenance.adoc) | Install and update OS and k8s using kubeadm. |
-|  6   | [Kubernetes the hard way](k8s-hard-way.adoc) |  |
+|  5   | [Networking](networking.adoc) | Configuring network plugins, services. |
+|  6   | [Troubleshooting](troubleshooting.adoc) | Troubleshooting application issues. |
+|  7   | [Cluster maintenance](cluster-maintenance.adoc) | Install and update OS and k8s using kubeadm. |
+|  8   | Kubernetes the hard way | Try it a few times if possible using vagrant or something else. |
 
 ## [Tips and tricks](tips-and-tricks.adoc) 
 Some useful tips for the exam, aliases I used to help speed up my work, vi setup, common mistakes and trips

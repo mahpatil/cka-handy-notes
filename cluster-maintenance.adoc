@@ -67,5 +67,3 @@ status of snapshot: ECTDCTL_API=3 etcdtl snapshot status <snapshotname.db>
 * https://kubernetes.io/docs/tasks/administer-cluster/configure-upgrade-etcd/#backing-up-an-etcd-cluster
 * https://github.com/etcd-io/etcd/blob/master/Documentation/op-guide/recovery.md
 * https://www.youtube.com/watch?v=qRPNuT080Hk
-
-// vim: set syntax=asciidoc:
