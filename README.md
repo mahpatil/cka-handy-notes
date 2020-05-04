@@ -1,5 +1,5 @@
 # CKA-HANDY-NOTES
-Handy notes for the certified kubernetes administrator from my personal learning.
+Handy notes for the **Certified kubernetes administrator** from my personal learning.
 
 There is a lot of information already available but i've used this to capture my learning and trainings. The sections 
 below provide an overview of where you should start. 
