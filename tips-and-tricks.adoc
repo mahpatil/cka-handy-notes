@@ -1,6 +1,7 @@
-== Tricks
+== Tips & Tricks
 
 === add to .vimrc
+For the exam setup vi for editing
 [source,shell]
 ----
 set tabstop=2
@@ -8,6 +9,8 @@ set expandtab
 set autoindent
 ----
 === create following aliases
+I used following aliases to help me, make sure you practice them
+
 [source,shell]
 ----
 alias sshroot='ssh -l root'
@@ -76,4 +79,34 @@ _Use translate to replace_: tr " " "\n"
 * search and replace: sed -e "s/text/newtext/"
 * highlight: less -p text
 * grep or: k describe node | grep  "Name\|CIDR"  or use egrep 'pattern1|pattern2'
+----
+
+=== Multiple containers
+When there are multiple init-containers, they are initiated sequentially so the startup time will be total time to initiate them (sleep intervals will be added)
+
+=== Upgrades
+If there is a pod running on a node that isn't part of replicaset, statefulset, job, daemonset, it will be lost when the node is drained
+To run on master it the pod needs to tolerate NoSchedule taint
+
+=== scheduling
+nodeSelector is the simplest recommended form of node selection constraint.
+
+=== networking
+[source,shell]
+----
+service ip range ps -aux | grep kube-api > check service ip range
+for cni plugin check kubelet process
+----
+
+coredns is a deployment
+coredns has a service endpoint, its ip is what should be in resolve.conf
+configuration is in configmap
+proxy mode determines iptables v/s others
+
+[source,shell]
+----
+netsat -ipnlp
+netstat -anp | grep
+ip link show <>
+ip route show default
 ----
