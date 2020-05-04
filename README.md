@@ -1,14 +1,17 @@
 # CKA-HANDY-NOTES
 Handy notes for the **Certified kubernetes administrator** from my personal learning.
 
-There is a lot of information already available but i've used this to capture my learning and trainings. The sections 
-below provide an overview of where you should start. 
+There is a lot of information already available but i've used this to capture my learning and trainings.
 
 CKA is completely hands on and requires you to be good at:
 
 1. kubectl, should help you save a lot of time if you practice
 2. unix commands for system processes, networking etc
 3. navigating kubernetes.io (see Chrome bookmarks)
+
+The sections below provide an overview of where you should start. 
+
+**Note that all of the headers below are hyperlinked.**
 
 ## [Useful links to start with](useful-links.adoc)
 
