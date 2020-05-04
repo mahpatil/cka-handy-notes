@@ -737,33 +737,89 @@ asciidoc.install();
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_tests">Tests</h2>
+<h2 id="_key_topics_for_your_revision">Key topics for your revision</h2>
 <div class="sectionbody">
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Create a new user called john. Grant him access to the cluster. John should have permission to create, list, get, update and delete
-pods in the development namespace . The private key exists in the location: /root/john.key and csr at /root/john.csr
+Backup and restore (etcd)
 </p>
 </li>
 <li>
 <p>
-List of nodes in JSON format and store it in a file at /opt/outputs/nodes-z3444kd9.json
-Use JSON PATH query to retrieve the osImages of all the nodes and store it in a file /opt/outputs/nodes_os_x43kj56.txt
+Security
+</p>
+<div class="olist loweralpha"><ol class="loweralpha">
+<li>
+<p>
+Generate new certificate for user and check roles and rolebinding
 </p>
 </li>
 <li>
 <p>
-Persistent volume creation
-Create a Pod called redis-storage with image: redis:alpine with a Volume of type emptyDir that lasts for the life of the Pod. Specs on the
-Take a backup of the etcd cluster and save it to /tmp/etcd-backup.db
+CNI in kubernetes - Weave training Troubleshooting tests
 </p>
 </li>
 <li>
 <p>
-Create an nginx pod called nginx-resolver using image nginx, expose it internally with a service called nginx-resolver-service. Test that
-you are able to look up the service and pod names from within the cluster. Use the image: busybox:1.28 for dns lookup. Record results in
-/root/nginx.svc and /root/nginx.pod
+Certificate CKA Ingress 1 &amp; 2 Test cluster roles
+</p>
+</li>
+</ol></div>
+</li>
+<li>
+<p>
+Image security OS Upgrades, Cluster upgrades
+</p>
+</li>
+<li>
+<p>
+Networking
+</p>
+</li>
+<li>
+<p>
+Static Pods
+</p>
+</li>
+<li>
+<p>
+Multiple Schedulars
+</p>
+</li>
+<li>
+<p>
+Multicontainer pods accesing secrets as mounts and vars
+</p>
+</li>
+<li>
+<p>
+Init Containers
+</p>
+</li>
+<li>
+<p>
+Affinity &amp; Taints <a href="https://codeburst.io/kubernetes-cka-hands-on-challenge-3-advanced-scheduling-3fbeb67f2f2">https://codeburst.io/kubernetes-cka-hands-on-challenge-3-advanced-scheduling-3fbeb67f2f2</a>
+</p>
+</li>
+<li>
+<p>
+creating kubecontext
+</p>
+</li>
+<li>
+<p>
+creating pods using kubectl
+</p>
+</li>
+<li>
+<p>
+creating deployments using kubectl
+</p>
+</li>
+<li>
+<p>
+create pvs and pvcs
 </p>
 </li>
 </ol></div>
@@ -774,7 +830,7 @@ you are able to look up the service and pod names from within the cluster. Use t
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2020-04-26 12:49:35 BST
+ 2020-05-04 13:12:26 BST
 </div>
 </div>
 </body>

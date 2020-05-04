@@ -71,9 +71,9 @@ k run tmp --image=curlimages/curl:7.65.3 --restart=Never --dry-run -o yaml --com
 [source,shell]
 ----
 k get node -o jsonpath="{range .items[*]}{.metadata.name} {.spec.podCIDR}{'\n'}{end}{range .items[*]}{.status.nodeInfo.architecture}{'\n'}{end}"
-----
 
-* Use translate to replace: tr " " "\n"
+_Use translate to replace_: tr " " "\n"
 * search and replace: sed -e "s/text/newtext/"
 * highlight: less -p text
 * grep or: k describe node | grep  "Name\|CIDR"  or use egrep 'pattern1|pattern2'
+----

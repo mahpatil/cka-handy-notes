@@ -6,7 +6,7 @@ kubectl describe service <servicename> and check ports and name and selectors
 kubectl get endpoints -- to confirm the service has an endpoint
 ----
 === nodes troublehsooting
-. kubectl describe node <nodenam> 
+. kubectl describe node <nodename>
 . for workers
 .. check kubelet is running
 .. if running check `journalctl -u kubelet`

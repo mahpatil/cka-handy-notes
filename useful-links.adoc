@@ -1,0 +1,10 @@
+== Useful links
+
+. https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn/lecture/15622940#overview
+. https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+.. run id command checking env vars netpol
+. https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal 
+. https://www.contino.io/insights/the-ultimate-guide-to-passing-the-cka-exam 
+. https://medium.com/faun/kubernetes-ckad-weekly-challenge-6-networkpolicy-6cc1d390f289 
+. https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d
+. https://github.com/g3rzi/CKA

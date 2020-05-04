@@ -1,9 +1,9 @@
 == Gotchas
 === Multiple containers
-when there are multiple initcontainers, they are initiated sequentially so the startup time will be total time to initiate them (sleep intervals will be added)
+When there are multiple initcontainers, they are initiated sequentially so the startup time will be total time to initiate them (sleep intervals will be added)
 
 === Upgrades
-if there is a pod running on a node that isnt part of replicaset, statefulset, job, daemonset, it will be lost when the node is drained
+If there is a pod running on a node that isnt part of replicaset, statefulset, job, daemonset, it will be lost when the node is drained
 To run on master it the pod needs to tolerate NoSchedule taint
 
 === scheduling
@@ -17,8 +17,6 @@ coredns is a deployment
 coredns has a service endpoint, its ip is what should be in resolve.conf
 configuration is in configmap 
 proxy mode determines iptables v/s others
-
-
 
 netsat -ipnlp
 netstat -anp | grep 

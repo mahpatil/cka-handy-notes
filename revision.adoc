@@ -1,0 +1,19 @@
+== Key topics for your revision
+. Backup and restore (etcd)
+. Security
+.. Generate new certificate for user and check roles and rolebinding
+.. CNI in kubernetes - Weave training Troubleshooting tests
+.. Certificate CKA Ingress 1 & 2 Test cluster roles
+. Image security OS Upgrades, Cluster upgrades
+. Networking
+. Static Pods
+. Multiple Schedulars
+. Multicontainer pods accesing secrets as mounts and vars
+. Init Containers
+. Affinity & Taints https://codeburst.io/kubernetes-cka-hands-on-challenge-3-advanced-scheduling-3fbeb67f2f2
+
+==== Practice operations using commandline
+. changing kube context and switching namespaces
+. creating pods using kubectl (kubectl run)
+. creating deployments using kubectl
+. creating roles using kubectl

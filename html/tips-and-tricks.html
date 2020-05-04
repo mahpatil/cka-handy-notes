@@ -736,126 +736,172 @@ asciidoc.install();
 <div id="header">
 </div>
 <div id="content">
+<div class="sect1">
+<h2 id="_tricks">Tricks</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_add_to_vimrc">add to .vimrc</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">set</span></span> <span style="color: #009900">tabstop</span><span style="color: #990000">=</span><span style="color: #993399">2</span>
+<span style="font-weight: bold"><span style="color: #0000FF">set</span></span> expandtab
+<span style="font-weight: bold"><span style="color: #0000FF">set</span></span> autoindent</tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_create_following_aliases">create following aliases</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt><span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">sshroot</span><span style="color: #990000">=</span><span style="color: #FF0000">'ssh -l root'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">k</span><span style="color: #990000">=</span>kubectl
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">kapply</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl apply -f'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">ksys</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl -n kube-system'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">kno</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl get nodes'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">kuse</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl config use-context'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">kns</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl config set-context --current --namespace'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">kcurr</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl config current-context'</span>
+<span style="font-weight: bold"><span style="color: #0000FF">alias</span></span> <span style="color: #009900">krun</span><span style="color: #990000">=</span><span style="color: #FF0000">'kubectl run --generator=run-pod/v1'</span></tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_namespace_with_most_resources">namespace with most resources</h3>
 <div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Backup and restore (etcd)
+k api-resources --namespaced -o name
 </p>
 </li>
 <li>
 <p>
-generate new certificate for user and check roles and rolebinding
+k api-resources --namespaced -o name | tr "\n" "," --without the new lines
 </p>
 </li>
 <li>
 <p>
-Neworking - explore environment (exam) Networking weave
+RESOURCES=$(k api-resources --namespaced -o name | tr "\n" ",")
 </p>
-<div class="olist loweralpha"><ol class="loweralpha">
+</li>
 <li>
 <p>
-CNI in kubernetes - Weave training Troubleshooting tests
+k get $RESOURCES --all-namespaces -o jsonpath="{range .items[*]}{.metadata.namespace} {.metadata.name}{<em>\n</em>}" | sort | grep project-c14 | wc -l
+</p>
+</li>
+<li>
+<p>
+kubectl api-versions
+</p>
+</li>
+<li>
+<p>
+kubectl api-resources
+</p>
+</li>
+<li>
+<p>
+kubectl auth can-i update po --as john
 </p>
 </li>
 </ol></div>
-</li>
+</div>
+<div class="sect2">
+<h3 id="_status_of_kubernetes_components">status of kubernetes components</h3>
+<div class="paragraph"><p>kubectl get componentstatuses --kubeconfig admin.kubeconfig</p></div>
+</div>
+<div class="sect2">
+<h3 id="_events">events</h3>
+<div class="paragraph"><p>kubectl get events --all-namespaces --sort-by=.metadata.creationTimestamp --by default reverse sourted</p></div>
+</div>
+<div class="sect2">
+<h3 id="_networking">networking</h3>
+<div class="olist arabic"><ol class="arabic">
 <li>
 <p>
-Certificate CKA Ingress 1 &amp; 2 Test cluster roles Image security OS Upgrades, Cluster upgrades
+pod cidr: k describe node | less -p PodCIDR
 </p>
 </li>
 <li>
 <p>
-Static Pods
-</p>
-</li>
-<li>
-<p>
-Multiple Schedulars Multicontainer pods Secrets
-</p>
-</li>
-<li>
-<p>
-Init Containers
-</p>
-</li>
-<li>
-<p>
-Affinity &amp; Taints <a href="https://codeburst.io/kubernetes-cka-hands-on-challenge-3-advanced-scheduling-3fbeb67f2f2">https://codeburst.io/kubernetes-cka-hands-on-challenge-3-advanced-scheduling-3fbeb67f2f2</a>
-</p>
-</li>
-<li>
-<p>
-New scheduler creation backup and restore
-</p>
-</li>
-<li>
-<p>
-<a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ — run">https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ — run</a> id command checking env vars netpol
-</p>
-</li>
-<li>
-<p>
-<a href="https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal">https://www.digitalocean.com/community/tutorials/systemd-essentials-working-with-services-units-and-the-journal</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://www.contino.io/insights/the-ultimate-guide-to-passing-the-cka-exam">https://www.contino.io/insights/the-ultimate-guide-to-passing-the-cka-exam</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://medium.com/faun/kubernetes-ckad-weekly-challenge-6-networkpolicy-6cc1d390f289">https://medium.com/faun/kubernetes-ckad-weekly-challenge-6-networkpolicy-6cc1d390f289</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn/lecture/15622940#overview">https://www.udemy.com/course/certified-kubernetes-administrator-with-practice-tests/learn/lecture/15622940#overview</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://sapient.udemy.com/course/certified-kubernetes-administrator/learn/lecture/17343546#overview">https://sapient.udemy.com/course/certified-kubernetes-administrator/learn/lecture/17343546#overview</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d">https://levelup.gitconnected.com/kubernetes-cka-example-questions-practical-challenge-86318d85b4d</a>
-</p>
-</li>
-<li>
-<p>
-<a href="https://github.com/g3rzi/CKA">https://github.com/g3rzi/CKA</a>
-</p>
-</li>
-<li>
-<p>
-creating kubecontext
-</p>
-</li>
-<li>
-<p>
-creating pods using kubectl
-</p>
-</li>
-<li>
-<p>
-creating deployments using kubectl
-</p>
-</li>
-<li>
-<p>
-create pvs and pvcs
+kubectl expose pod nginx-resolver nginx-resolver-service --port=80 --target-port=80 --type=ClusterIP
 </p>
 </li>
 </ol></div>
+</div>
+<div class="sect2">
+<h3 id="_scheduling">scheduling</h3>
+<div class="literalblock">
+<div class="content">
+<pre><code>  nodeSelector:                           # add
+    node-role.kubernetes.io/master: ""    # add
+Which suffix will static pods have that run on cluster1-worker1:
+-cluster1-worker1</code></pre>
+</div></div>
+</div>
+<div class="sect2">
+<h3 id="_easy_search_for_files">easy search for files</h3>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>find /etc/systemd/system<span style="color: #990000">/</span>
+find /etc/kubernetes/manifests<span style="color: #990000">/</span>
+k -n project-c<span style="color: #993399">14</span> create job backup-manual-run-<span style="color: #993399">1</span> --from<span style="color: #990000">=</span>cronjob/holy-backup</tt></pre></div></div>
+</div>
+<div class="sect2">
+<h3 id="_calling_api_server">calling api server</h3>
+<div class="paragraph"><p>curl -k <a href="https://kubernetes.default/api/v1/secrets">https://kubernetes.default/api/v1/secrets</a></p></div>
+</div>
+<div class="sect2">
+<h3 id="_service_tokens">service tokens</h3>
+<div class="paragraph"><p>TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)</p></div>
+</div>
+<div class="sect2">
+<h3 id="_running_shell_with_complex_command">running shell with complex command</h3>
+<div class="paragraph"><p>k run tmp --image=curlimages/curl:7.65.3 --restart=Never --dry-run -o yaml --command &gt; 6.yaml&#8201;&#8212;&#8201;sh -c <em>sleep 1d</em></p></div>
+</div>
+<div class="sect2">
+<h3 id="_jsonpath_and_unix_commands">jsonpath and unix commands</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Range: jsonpath="{range .items[<strong>]} {.metadata.name}{.spec.containers[</strong>].resources}{<em>\n</em>}"
+</p>
+</li>
+<li>
+<p>
+Contexts from config: k config view -o jsonpath="{.contexts[*].name}" | tr " " "\n"
+</p>
+</li>
+<li>
+<p>
+Multiple ranges:
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><!-- Generator: GNU source-highlight
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><tt>k get node -o <span style="color: #009900">jsonpath</span><span style="color: #990000">=</span><span style="color: #FF0000">"{range .items[*]}{.metadata.name} {.spec.podCIDR}{'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'}{end}{range .items[*]}{.status.nodeInfo.architecture}{'</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">'}{end}"</span>
+
+_Use translate to replace_<span style="color: #990000">:</span> tr <span style="color: #FF0000">" "</span> <span style="color: #FF0000">"</span><span style="color: #CC33CC">\n</span><span style="color: #FF0000">"</span>
+<span style="color: #990000">*</span> search and replace<span style="color: #990000">:</span> sed -e <span style="color: #FF0000">"s/text/newtext/"</span>
+<span style="color: #990000">*</span> highlight<span style="color: #990000">:</span> less -p text
+<span style="color: #990000">*</span> grep or<span style="color: #990000">:</span> k describe node <span style="color: #990000">|</span> grep  <span style="color: #FF0000">"Name</span><span style="color: #CC33CC">\|</span><span style="color: #FF0000">CIDR"</span>  or use egrep <span style="color: #FF0000">'pattern1|pattern2'</span></tt></pre></div></div>
+</div>
+</div>
+</div>
 </div>
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
 Last updated
- 2020-04-26 13:14:22 BST
+ 2020-05-04 13:02:15 BST
 </div>
 </div>
 </body>

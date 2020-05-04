@@ -5,5 +5,7 @@
 https://kubernetes.io/docs/tasks/debug-application-cluster/resource-metrics-pipeline/#metrics-server
 
 == commands to check stats
+This requires metrics server to be deployed
+
 . kubectl top node
 . kubectl top pod
