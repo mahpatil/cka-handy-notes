@@ -24,7 +24,7 @@ The sections below provide an overview of where you should start.
 Would recommend as the last step of your preparation, prior to the exam.
 
 ## [Chrome bookmarks](chrome-bookmarks.html) 
-You are **only allowed to use chrome/chromium** for the exam and only 2 tabs (one for the exam, the other for the kubernetes.io).
+You are **only allowed to use chrome/chromium** for the exam and only 2 tabs (one for the exam, the other for kubernetes.io).
 
 Rather than search kubernetes.io for every topic, I used these bookmarks for the most common topics. I 
 used the **chrome search to look for the appropriate bookmark** based on the topic. 
