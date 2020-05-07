@@ -1,5 +1,5 @@
 # CKA-HANDY-NOTES
-Handy notes for the **Certified kubernetes administrator** from my personal learning.
+Handy notes for the **Certified Kubernetes Administrator** certification based on my personal learning. I did this in Apr 2020 and has been a fun experience overall. Off the 3 hours I actually had 30 mins left to help go through and validate all my answers and managed to secure 98% (phew!!!).
 
 There is a lot of information already available but i've used this to capture my learning and trainings.
 
